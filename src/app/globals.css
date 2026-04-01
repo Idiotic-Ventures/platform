@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * FONT DECISION (C5 fix):
+ * Helvetica Neue is not available on Google Fonts and requires either self-hosting
+ * or a commercial license. Rather than silently falling back to Arial on Windows/Android,
+ * we use Inter as the primary body font — it's a direct spiritual successor to
+ * Helvetica Neue, optimized for screens, and available via next/font/google (zero FOMT).
+ * Reddit Mono is retained for all numeric/technical accents per PRD.
+ *
+ * If Helvetica Neue is required in future, self-host via @font-face with the font files
+ * placed in public/fonts/ and loaded here.
+ */
+
+:root {
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-reddit-mono), "Menlo", "Monaco", "Consolas", monospace;
+
+  /* Brand colors */
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 262.1 83.3% 57.8%;
+  --radius: 0.5rem;
+
+  /* M6 fix: Semantic color tokens for success/warning/danger — avoids hardcoded green/yellow */
+  --success: 142 76% 36%;
+  --success-foreground: 0 0% 100%;
+  --success-bg: 142 76% 95%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 100%;
+  --warning-bg: 38 92% 95%;
+  --danger: 0 84% 60%;
+  --danger-foreground: 0 0% 100%;
+  --danger-bg: 0 84% 95%;
+
+  /* Admin sidebar */
+  --admin-sidebar-bg: 222.2 47.4% 11.2%;
+  --admin-sidebar-foreground: 210 40% 98%;
+  --admin-sidebar-accent: 217.2 32.6% 17.5%;
+  --admin-sidebar-border: 217.2 32.6% 17.5%;
+}
+
+/* M7 fix: Dark mode block removed for v1 — no ThemeProvider means it's dead code.
+ * Re-enable when ThemeProvider is wired and toggle exists.
+ * Placeholder kept as comment for future implementation:
+ *
+ * .dark { ... }
+ */
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans);
+}
+
+/* Utility: apply mono font to all numeric display values */
+.tabular-nums {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
